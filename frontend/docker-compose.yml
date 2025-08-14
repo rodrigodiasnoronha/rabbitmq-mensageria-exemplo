@@ -4,8 +4,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
-      - /app/node_modules
+      - .:/app:cached
     environment:
       - CHOKIDAR_USEPOLLING=true
       - NODE_ENV=production
