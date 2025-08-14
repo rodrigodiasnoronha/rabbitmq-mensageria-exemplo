@@ -4,7 +4,7 @@ Aplicação exemplo demonstrando integração entre Frontend, Backend e RabbitMQ
 
 ## 🚀 Tecnologias
 
-- **Frontend:** React + TypeScript
+- **Frontend:** React + JavaScript
 - **Backend:** Node.js
 - **Mensageria:** RabbitMQ
 - **Containerização:** Docker
@@ -17,24 +17,24 @@ Aplicação exemplo demonstrando integração entre Frontend, Backend e RabbitMQ
 
 1. **Clone o repositório**
    ```bash
-   git clone <url-do-repositorio>
-   
+   git clone git@github.com:rodrigodiasnoronha/rabbitmq-mensageria-exemplo.git
+   ```
 
-2. Backend
-```bash
+2. **Backend**
+    ```bash
+    
+    cd backend
+    docker compose up -d
+    ```
 
-cd backend
-docker compose up -d
-```
-
-3. Frontend 
-```bash
-cd frontend
-docker compose up -d
-```
+3. **Frontend**
+    ```bash
+    cd frontend
+    docker compose up -d
+    ```
 
 
-4. Acesso
+## 🏗️ Acesso
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8000
 - RabbitMQ Management: http://localhost:15672
