@@ -1,0 +1,17 @@
+services:
+  react-app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=production
+    networks:
+      - net-app
+
+networks:
+  net-app:
+    driver: bridge
