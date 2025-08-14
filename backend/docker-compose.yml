@@ -1,25 +1,31 @@
 services:
-  express-app:
-    build: .
-    ports:
-      - "4000:4000"
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=production
-      - RABBITMQ_URL=amqp://rabbitmq
-    networks:
-      - net-app
-
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
       - "5672:5672"   # Porta do protocolo AMQP (Node vai usar essa)
       - "15672:15672" # Painel web do RabbitMQ
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 5s
+      retries: 5
     networks:
       - net-app
+
+  express-app:
+    build: .
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app:cached
+    environment:
+      - NODE_ENV=production
+      - RABBITMQ_URL=amqp://rabbitmq
+    networks:
+      - net-app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
 
 networks:
   net-app:
